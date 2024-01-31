@@ -10,7 +10,7 @@ export class CatsService {
 
   async findAll(): Promise<any> {
     const { data } = await firstValueFrom(
-      this.httpService.get<any>('http://localhost:3000/cats').pipe(
+      this.httpService.get<any>('https://swapi.py4e.com/api/films/').pipe(
         catchError((error: AxiosError) => {
           this.logger.error(error.response.data);
           throw 'An error happened!';
