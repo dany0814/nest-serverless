@@ -12,6 +12,6 @@ export class CatsModule {
   constructor(private readonly httpService: HttpService) {}
 
   findAll(): Observable<AxiosResponse<any>> {
-    return this.httpService.get('http://localhost:3000/cats');
+    return this.httpService.get('https://swapi.py4e.com/api/films/');
   }
 }
