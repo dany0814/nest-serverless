@@ -140,6 +140,39 @@ export class ClientFunctions {
 
     return response;
   };
+
+  //starwars api
+  findUserStarWars = async (event): Promise<APIGatewayProxyResult> => {
+    const response = this.initiResp();
+
+    try {
+      console.log("Data de starwars entrando en la apigateway")
+      const Item = await this._service.getPeople();
+
+      if (Item) {
+        response.body = JSON.stringify({
+          data: Item,
+          message: "Successfully retrieved client.",
+        });
+      } else {
+        response.statusCode = 404;
+
+        response.body = JSON.stringify({
+          message: "People of starwars not found.",
+        });
+      }
+    } catch (e) {
+      console.error(e);
+      response.statusCode = 500;
+      response.body = JSON.stringify({
+        message: "Failed to get people by starwars universe.",
+        errorMsg: e.message,
+        errorStack: e.stack,
+      });
+    }
+
+    return response;
+  };
 }
 
 const funcs = new ClientFunctions(new ClientService());
@@ -149,3 +182,4 @@ export const update = funcs.update;
 export const findAll = funcs.findAll;
 export const findById = funcs.findById;
 export const deleteById = funcs.deleteById;
+export const findUserStarWars = funcs.findUserStarWars

@@ -92,6 +92,21 @@ functions:
           - "dynamodb:DeleteItem"
         Resource: !GetAtt ClientsTable.Arn
 
+  getPeopleStarwars:
+    handler: src/functions/ClientFunctions.findUserStarWars
+    name: get-people-starwars
+    memorySize: 128 # mb
+    timeout: 5 # seconds
+    events:
+      - http:
+          path: starwars
+          method: GET
+    # iamRoleStatements:
+    #   - Effect: "Allow"
+    #     Action:
+    #       - "dynamodb:GetItem"
+    #     Resource: !GetAtt ClientsTable.Arn
+
 resources:
   Resources:
     ClientsTable:
