@@ -1,9 +1,22 @@
 import axios from "axios";
 
 type User = {
-    id: number;
-    email: string;
-    first_name: string;
+  birth_year: string
+  eye_color: string
+  films: string[]
+  gender: string
+  hair_color: string
+  height: string
+  homeworld: string
+  mass: string
+  name: string
+  skin_color: string
+  created: string
+  edited: string
+  species: string[]
+  starships: string[]
+  url: string
+  vehicles: string[]
 };
 
 type GetUsersResponse = {
@@ -16,7 +29,7 @@ export class HTTP {
       console.log("Entrando en la función getUsers de Utils");
       // 👇️ const data: GetUsersResponse
       const { data, status } = await axios.get<GetUsersResponse>(
-        "https://reqres.in/api/users",
+        "https://swapi.py4e.com/api/people/1/",
         {
           headers: {
             Accept: "application/json",
